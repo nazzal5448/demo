@@ -1,2 +1,2 @@
-# demo
-This repo is just for practice purposes
+# **Demo**
+> This repo is just for practice purposes
