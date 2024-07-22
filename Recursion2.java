@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 public class Recursion2 {
     public static void towerofHanoi(int n, String source, String helper, String destination) {
         if (n == 1) {
@@ -112,6 +114,35 @@ public class Recursion2 {
         }
     }
 
+    public static void subsequence(String str, int idx, String newStr, HashSet<String> set) {
+        if (idx == str.length()) {
+            if (set.contains(newStr)) {
+                return;
+            } else {
+                System.out.println(newStr);
+                set.add(newStr);
+                return;
+            }
+        }
+        char curr_char = str.charAt(idx);
+        subsequence(str, idx + 1, newStr + curr_char, set);
+        subsequence(str, idx + 1, newStr, set);
+    }
+
+    public static String[] keypad = { ".", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tu", "vwx", "yz" };
+
+    public static void printComb(String str, int idx, String combination) {
+        if (idx == str.length()) {
+            System.out.println(combination);
+            return;
+        }
+        char current_char = str.charAt(idx);
+        String mapping = keypad[current_char - '0'];
+        for (int i = 0; i < mapping.length(); i++) {
+            printComb(str, idx + 1, combination + mapping.charAt(i));
+        }
+    }
+
     public static void main(String[] args) {
         // towerofHanoi(3, "S", "H", "D");
         // String str = "abcdaahehehddeea";
@@ -124,10 +155,12 @@ public class Recursion2 {
         // } else {
         // System.out.println("Array is not sorted!");
         // }
-        String str = "abbccddaaeeff";
+        String str = "4";
         int idx = 0;
         // char c = 'x';
         // setChatAtBack(str, c, 0, "", "");
-        removeDuplicates(str, idx, "");
+        // HashSet<String> hash = new HashSet<>();
+        // subsequence(str, idx, "", hash);
+        printComb(str, idx, "");
     }
 }
